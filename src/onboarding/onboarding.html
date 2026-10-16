@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Set up SafePaste</title>
+    <link rel="stylesheet" href="../shared/pages.css" />
+    <script src="../shared/constants.js"></script>
+    <script type="module" src="onboarding.js"></script>
+</head>
+
+<body class="options">
+    <main>
+        <h1>Set up SafePaste</h1>
+        <p class="muted">
+            SafePaste uses a local AI model, run by Ollama, to find names and other private details before you paste.
+            The
+            check runs on this computer. The text you paste still goes to the AI site, with placeholders instead of the
+            private details.
+        </p>
+
+        <section id="step-install" class="card step">
+            <h2><span class="num">1</span> Install Ollama</h2>
+            <p>Ollama runs AI models on your computer. Install it and open it. This page notices when it's running.</p>
+            <div><a class="btn" href="https://ollama.com/download" target="_blank" rel="noopener">Download Ollama</a>
+            </div>
+        </section>
+
+        <section id="step-allow" class="card step">
+            <h2><span class="num">2</span> Allow SafePaste to use Ollama</h2>
+            <p>Ollama only accepts requests from apps you allow. Run this once in a terminal, then restart Ollama.</p>
+            <div id="os-tabs" class="tabs"></div>
+            <pre id="command"></pre>
+            <div><button id="copy" class="btn btn-ghost">Copy command</button></div>
+        </section>
+
+        <section id="step-model" class="card step">
+            <h2><span class="num">3</span> Download the AI model</h2>
+            <p>The model <b id="model-name"></b> is downloaded once and stays on this computer.</p>
+            <div><button id="download" class="btn">Download model</button></div>
+            <div id="progress" class="progress" hidden>
+                <div class="bar"><i></i></div>
+                <span></span>
+            </div>
+        </section>
+
+        <section id="ready" class="card ready" hidden>✓ SafePaste is ready. Paste into ChatGPT, Claude or Gemini to try
+            it.</section>
+
+        <p id="status" class="muted"></p>
+    </main>
+</body>
+
+</html>

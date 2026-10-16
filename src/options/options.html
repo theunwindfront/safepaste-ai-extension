@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SafePaste settings</title>
+    <link rel="stylesheet" href="../shared/pages.css" />
+    <script src="../shared/constants.js"></script>
+    <script type="module" src="options.js"></script>
+  </head>
+  <body class="options">
+    <main>
+      <h1>SafePaste settings</h1>
+
+      <section class="card">
+        <h2>General</h2>
+        <div class="row">
+          <span>Show a preview before pasting<br /><span class="muted">When off, private items are hidden straight away</span></span>
+          <button id="preview" class="switch" role="switch" aria-label="Show a preview before pasting"></button>
+        </div>
+        <div class="row">
+          <span>Show real values in replies<br /><span class="muted">Only on your screen. The AI site keeps the placeholders</span></span>
+          <button id="restore" class="switch" role="switch" aria-label="Show real values in replies"></button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Always hide</h2>
+        <p class="muted">Words SafePaste always hides, such as client or project names. Upper and lower case are ignored.</p>
+        <form id="always-form" class="add">
+          <input id="always-text" type="text" placeholder="e.g. Acme Ltd" aria-label="Word to always hide" required />
+          <select id="always-type" aria-label="Type"></select>
+          <button class="btn">Add</button>
+        </form>
+        <ul id="always-list" class="list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Never hide</h2>
+        <p class="muted">Words SafePaste leaves alone, such as public product names.</p>
+        <form id="never-form" class="add">
+          <input id="never-text" type="text" placeholder="e.g. Shopify" aria-label="Word to never hide" required />
+          <button class="btn">Add</button>
+        </form>
+        <ul id="never-list" class="list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Sites</h2>
+        <ul id="sites" class="list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Local AI model</h2>
+        <label class="field">Ollama address <input id="ollama-url" type="url" /></label>
+        <label class="field">Model <select id="model"></select></label>
+        <p id="model-status" class="muted">Checking…</p>
+        <p class="muted">qwen2.5:3b is the most accurate. qwen2.5:1.5b is about twice as fast but misses more names.</p>
+      </section>
+    </main>
+  </body>
+</html>

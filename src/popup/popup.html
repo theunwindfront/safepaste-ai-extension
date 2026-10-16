@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SafePaste</title>
+    <link rel="stylesheet" href="../shared/pages.css" />
+    <script src="../shared/constants.js"></script>
+    <script type="module" src="popup.js"></script>
+  </head>
+  <body class="popup">
+    <header class="row">
+      <strong>SafePaste</strong>
+      <button id="enabled" class="switch" role="switch" aria-label="SafePaste on or off"></button>
+    </header>
+
+    <section id="status" class="status">
+      <span class="dot"></span>
+      <div>
+        <div id="status-title">Checking local AI…</div>
+        <div id="status-sub" class="muted"></div>
+      </div>
+    </section>
+
+    <section id="site-row" class="row">
+      <span>On <b id="site-name">this site</b></span>
+      <button id="site" class="switch" role="switch" aria-label="On this site"></button>
+    </section>
+
+    <section class="stat"><b id="items">0</b> private items hidden today</section>
+
+    <footer><a id="settings" href="#">Settings</a></footer>
+  </body>
+</html>
