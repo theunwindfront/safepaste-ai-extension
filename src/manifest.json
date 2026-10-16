@@ -31,7 +31,7 @@
         "run_at": "document_idle"
     }],
     "web_accessible_resources": [{
-        "resources": ["content/ui.css"],
+        "resources": ["content/ui.css", "fonts/*"],
         "matches": ["https://chatgpt.com/*", "https://claude.ai/*", "https://gemini.google.com/*"]
     }]
 }

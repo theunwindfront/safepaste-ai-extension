@@ -5,11 +5,15 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "watch": "node scripts/build.mjs --watch"
+    "watch": "node scripts/build.mjs --watch",
+    "zip": "node scripts/build.mjs --zip",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@tailwindcss/cli": "4.3.3",
     "geist": "1.7.2",
+    "prettier": "3.9.10",
+    "prettier-plugin-tailwindcss": "0.8.1",
     "tailwindcss": "4.3.3"
   }
 }

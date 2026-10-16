@@ -1,20 +1,10 @@
+@import "tailwindcss" source("../content");
+@import "./theme.css";
+
 :host {
   all: initial;
-  --ink: #101317;
-  --ink-2: #353b44;
-  --muted: #6a7280;
-  --faint: #9aa1ac;
-  --line: #e4e7eb;
-  --line-2: #eef0f3;
-  --canvas: #f5f6f8;
-  --brand: #0d6b5b;
-  --brand-dark: #0a5a4c;
-  --brand-soft: #e2f1ed;
-  --warn: #a8550a;
-  --warn-soft: #fdf1e1;
-  --shadow: 0 1px 2px rgb(16 19 23 / 0.06), 0 12px 32px -8px rgb(16 19 23 / 0.18), 0 0 0 1px rgb(16 19 23 / 0.06);
-  font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
-  color: var(--ink);
+  font: 14px/1.5 var(--font-sans);
+  color: var(--color-ink);
 }
 
 * {
@@ -30,17 +20,17 @@
   padding: 8px 14px;
   border-radius: 999px;
   background: #fff;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-pop);
   font-size: 13px;
-  color: var(--ink-2);
+  color: var(--color-ink-2);
   white-space: nowrap;
 }
 
 .spinner {
   width: 14px;
   height: 14px;
-  border: 2px solid var(--brand-soft);
-  border-top-color: var(--brand);
+  border: 2px solid var(--color-brand-soft);
+  border-top-color: var(--color-brand);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -56,13 +46,13 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--brand);
-  box-shadow: 0 0 0 3px var(--brand-soft);
+  background: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-soft);
 }
 
 .dot.warn {
-  background: var(--warn);
-  box-shadow: 0 0 0 3px var(--warn-soft);
+  background: var(--color-warn);
+  box-shadow: 0 0 0 3px var(--color-warn-soft);
 }
 
 .popover {
@@ -72,7 +62,7 @@
   overflow: hidden;
   border-radius: 14px;
   background: #fff;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-pop);
   pointer-events: auto;
 }
 
@@ -82,7 +72,7 @@ header {
   justify-content: space-between;
   gap: 12px;
   padding: 14px 18px;
-  border-bottom: 1px solid var(--line-2);
+  border-bottom: 1px solid var(--color-line-2);
 }
 
 .title {
@@ -95,7 +85,7 @@ header {
   align-items: center;
   gap: 8px;
   font-size: 12px;
-  color: var(--muted);
+  color: var(--color-muted);
 }
 
 .note .dot {
@@ -111,13 +101,13 @@ header {
   border: 0;
   border-radius: 6px;
   background: none;
-  color: var(--faint);
+  color: var(--color-faint);
   font-size: 14px;
   cursor: pointer;
 }
 
 .close:hover {
-  background: var(--canvas);
+  background: var(--color-canvas);
 }
 
 .content {
@@ -144,8 +134,8 @@ header {
 }
 
 .chip.kept {
-  --bg: var(--canvas);
-  --c: var(--muted);
+  --bg: var(--color-canvas);
+  --c: var(--color-muted);
 }
 
 .body {
@@ -156,7 +146,7 @@ header {
   word-break: break-word;
   font-size: 14.5px;
   line-height: 1.95;
-  color: var(--ink-2);
+  color: var(--color-ink-2);
 }
 
 .hl {
@@ -173,28 +163,28 @@ header {
 .hl.kept {
   background: none;
   box-shadow: none;
-  outline: 1.5px dashed var(--faint);
+  outline: 1.5px dashed var(--color-faint);
   outline-offset: -1.5px;
-  color: var(--ink);
+  color: var(--color-ink);
 }
 
 .hint {
   margin-top: 12px;
   padding: 9px 12px;
   border-radius: 8px;
-  background: var(--canvas);
+  background: var(--color-canvas);
   font-size: 12.5px;
-  color: var(--muted);
+  color: var(--color-muted);
 }
 
 .receives {
   margin-top: 12px;
   padding: 12px 14px;
-  border: 1px dashed var(--line);
+  border: 1px dashed var(--color-line);
   border-radius: 8px;
   font-size: 13px;
   line-height: 1.8;
-  color: var(--ink-2);
+  color: var(--color-ink-2);
 }
 
 .receives .label {
@@ -203,7 +193,7 @@ header {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--faint);
+  color: var(--color-faint);
 }
 
 .receives .out {
@@ -216,9 +206,9 @@ header {
 .ph {
   padding: 1px 6px;
   border-radius: 4px;
-  background: var(--ink);
+  background: var(--color-ink);
   color: #fff;
-  font: 500 12px ui-monospace, monospace;
+  font: 500 12px var(--font-mono);
 }
 
 footer {
@@ -228,10 +218,10 @@ footer {
   gap: 12px;
   margin-top: 14px;
   padding: 12px 18px;
-  border-top: 1px solid var(--line-2);
+  border-top: 1px solid var(--color-line-2);
   background: #fafbfc;
   font-size: 12.5px;
-  color: var(--muted);
+  color: var(--color-muted);
 }
 
 .actions {
@@ -253,21 +243,21 @@ footer {
 }
 
 .btn-primary {
-  background: var(--brand);
+  background: var(--color-brand);
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: var(--brand-dark);
+  background: var(--color-brand-ink);
 }
 
 .btn-ghost {
   background: none;
-  color: var(--ink);
+  color: var(--color-ink);
 }
 
 .btn-ghost:hover {
-  background: var(--canvas);
+  background: var(--color-canvas);
 }
 
 .kbd {
@@ -278,35 +268,35 @@ footer {
 }
 
 .e-PERSON {
-  --c: #2557d6;
-  --bg: #e7eefc;
+  --c: var(--color-person);
+  --bg: var(--color-person-soft);
 }
 
 .e-COMPANY,
 .e-URL {
-  --c: #0b7285;
-  --bg: #e0f3f6;
+  --c: var(--color-company);
+  --bg: var(--color-company-soft);
 }
 
 .e-EMAIL,
 .e-PHONE {
-  --c: #a8550a;
-  --bg: #fdf1e1;
+  --c: var(--color-email);
+  --bg: var(--color-email-soft);
 }
 
 .e-SECRET,
 .e-ACCOUNT {
-  --c: #b42318;
-  --bg: #fdecea;
+  --c: var(--color-secret);
+  --bg: var(--color-secret-soft);
 }
 
 .e-AMOUNT {
-  --c: #177245;
-  --bg: #e6f5ec;
+  --c: var(--color-money);
+  --bg: var(--color-money-soft);
 }
 
 .e-PROJECT,
 .e-ADDRESS {
-  --c: #5b4bb7;
-  --bg: #efedfb;
+  --c: var(--color-place);
+  --bg: var(--color-place-soft);
 }

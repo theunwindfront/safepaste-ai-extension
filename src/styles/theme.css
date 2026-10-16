@@ -1,0 +1,34 @@
+@theme static {
+  --font-sans: "SafePaste Geist", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "SafePaste Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ink: #101317;
+  --color-ink-2: #353b44;
+  --color-muted: #6a7280;
+  --color-faint: #9aa1ac;
+  --color-line: #e4e7eb;
+  --color-line-2: #eef0f3;
+  --color-canvas: #f5f6f8;
+
+  --color-brand: #0d6b5b;
+  --color-brand-ink: #0a5a4c;
+  --color-brand-soft: #e2f1ed;
+
+  --color-warn: #a8550a;
+  --color-warn-soft: #fdf1e1;
+
+  --color-person: #2557d6;
+  --color-person-soft: #e7eefc;
+  --color-company: #0b7285;
+  --color-company-soft: #e0f3f6;
+  --color-email: #a8550a;
+  --color-email-soft: #fdf1e1;
+  --color-secret: #b42318;
+  --color-secret-soft: #fdecea;
+  --color-money: #177245;
+  --color-money-soft: #e6f5ec;
+  --color-place: #5b4bb7;
+  --color-place-soft: #efedfb;
+
+  --shadow-pop: 0 1px 2px rgb(16 19 23 / 0.06), 0 12px 32px -8px rgb(16 19 23 / 0.18), 0 0 0 1px rgb(16 19 23 / 0.06);
+}

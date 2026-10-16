@@ -8,8 +8,20 @@
     return el;
   }
 
+  function injectFonts() {
+    if (document.getElementById('safepaste-fonts')) return;
+    const url = (file) => chrome.runtime.getURL(`fonts/${file}`);
+    const style = document.createElement('style');
+    style.id = 'safepaste-fonts';
+    style.textContent = `
+      @font-face { font-family: "SafePaste Geist"; src: url("${url('Geist-Variable.woff2')}") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "SafePaste Geist Mono"; src: url("${url('GeistMono-Variable.woff2')}") format("woff2"); font-weight: 100 900; }`;
+    document.head.append(style);
+  }
+
   async function root() {
     if (shadow?.host.isConnected) return shadow;
+    injectFonts();
     const host = document.createElement('div');
     host.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:2147483647;';
     shadow = host.attachShadow({ mode: 'closed' });
@@ -109,6 +121,17 @@
       ),
       h('footer', '', 'Real values come back automatically in the reply', h('div', 'actions', originalBtn, protectBtn)),
     );
+
+    function injectFonts() {
+      if (document.getElementById('safepaste-fonts')) return;
+      const url = (file) => chrome.runtime.getURL(`fonts/${file}`);
+      const style = document.createElement('style');
+      style.id = 'safepaste-fonts';
+      style.textContent = `
+      @font-face { font-family: "SafePaste Geist"; src: url("${url('Geist-Variable.woff2')}") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "SafePaste Geist Mono"; src: url("${url('GeistMono-Variable.woff2')}") format("woff2"); font-weight: 100 900; }`;
+      document.head.append(style);
+    }
 
     function render() {
       const counts = {};
