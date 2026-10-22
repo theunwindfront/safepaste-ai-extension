@@ -86,6 +86,54 @@
     highlight.clear();
   }
 
+  const escapeHtml = (value) => value.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
+
+  function restoreText(text, html = false) {
+    return text.replace(SP.PLACEHOLDER_RE, (ph) => {
+      const value = map.values[ph]?.value;
+      if (value === undefined) return ph;
+      return html ? escapeHtml(value) : value;
+    });
+  }
+
+  function selectedText() {
+    const el = document.activeElement;
+    if (el instanceof HTMLTextAreaElement || el instanceof HTMLInputElement) {
+      return { plain: el.value.slice(el.selectionStart ?? 0, el.selectionEnd ?? 0), html: null };
+    }
+    const selection = getSelection();
+    if (!selection.rangeCount) return { plain: '', html: null };
+    const box = document.createElement('div');
+    box.append(selection.getRangeAt(0).cloneContents());
+    return { plain: selection.toString(), html: box.innerHTML };
+  }
+
+  function onCopy(e) {
+    if (!enabled) return;
+    const { plain, html } = selectedText();
+    const restored = restoreText(plain);
+    if (restored === plain) return;
+    e.clipboardData.setData('text/plain', restored);
+    if (html) e.clipboardData.setData('text/html', restoreText(html, true));
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+
+  function onCopyButton(e) {
+    if (!enabled || typeof e.detail !== 'string') return;
+    const { plain, html } = JSON.parse(e.detail);
+    const restored = { plain: plain === null ? null : restoreText(plain), html: html === null ? null : restoreText(html, true) };
+    if (restored.plain === plain && restored.html === html) return;
+    e.preventDefault();
+    const data = {};
+    if (restored.plain !== null) data['text/plain'] = new Blob([restored.plain], { type: 'text/plain' });
+    if (restored.html !== null) data['text/html'] = new Blob([restored.html], { type: 'text/html' });
+    navigator.clipboard.write([new ClipboardItem(data)]).catch(() => {});
+  }
+
+  addEventListener('copy', onCopy, true);
+  document.addEventListener('safepaste:copy', onCopyButton);
+
   function refresh() {
     if (enabled && Object.keys(map.values).length) start();
     else stop();
