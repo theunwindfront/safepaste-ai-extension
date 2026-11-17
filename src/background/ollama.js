@@ -39,10 +39,11 @@ export async function chatJson({ ollamaUrl, model }, messages, schema) {
       format: schema,
       stream: false,
       keep_alive: '30m',
-      options: { temperature: 0 },
+      options: { temperature: 0, num_ctx: 4096, num_predict: 1024 },
     }),
   });
   const body = await res.json();
+  if (body.done_reason === 'length') throw new OllamaError('error', 'The model ran out of room before finishing');
   try {
     return JSON.parse(body.message?.content ?? '{}');
   } catch {
