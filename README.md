@@ -37,9 +37,26 @@ See [PRIVACY.md](PRIVACY.md) for the full privacy policy.
 
 On a 4-core laptop CPU a paste takes about 8 seconds to check. A recent Mac or a computer with a graphics card is much faster.
 
+## Install
+
+### Microsoft Edge
+
+Install SafePaste from [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons) (link coming soon). Updates install automatically.
+
+### Chrome, Brave, Opera and other Chromium browsers
+
+1. Download `safepaste-<version>-unpacked.zip` from the latest [GitHub release](https://github.com/theunwindfront/safepaste/releases/latest).
+2. Unzip it, and keep the `safepaste-<version>` folder somewhere permanent. The browser loads the extension from this folder, so don't delete it.
+3. Open `chrome://extensions` and turn on **Developer mode** (top right).
+4. Click **Load unpacked** and pick the `safepaste-<version>` folder.
+
+To update, download the new release, replace the folder's contents, and click the reload button on SafePaste in `chrome://extensions`.
+
+Chrome may show a notice about developer-mode extensions. That's normal for extensions installed outside the Chrome Web Store.
+
 ## Setup
 
-1. Install SafePaste (from the Chrome Web Store, or from source as below).
+1. Install SafePaste as above.
 2. The setup page opens by itself. It walks you through three steps:
    1. **Install Ollama.**
    2. **Allow SafePaste to use Ollama.** Ollama only answers apps on its allowed list, so SafePaste shows the exact command for your system, with its own extension ID filled in. Run it, then restart Ollama.
@@ -51,7 +68,7 @@ You can reopen the setup page any time by clicking the status card in the toolba
 ## Build from source
 
 ```bash
-git clone git@github.com:theunwindfront/safepaste.git
+git clone https://github.com/theunwindfront/safepaste.git
 cd safepaste
 npm install
 npm run build
@@ -59,14 +76,21 @@ npm run build
 
 Then open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and pick the `dist` folder.
 
-| Command          | What it does                                                                                        |
-| ---------------- | --------------------------------------------------------------------------------------------------- |
-| `npm run build`  | Builds `src/` into `dist/` (copies files, compiles Tailwind CSS, adds fonts and icons)              |
-| `npm run watch`  | Rebuilds whenever a file in `src/` changes                                                          |
-| `npm run zip`    | Builds, then writes `safepaste-<version>.zip` for the Chrome Web Store (without the manifest `key`) |
-| `npm run format` | Formats the code with Prettier                                                                      |
+| Command           | What it does                                                                                              |
+| ----------------- | --------------------------------------------------------------------------------------------------------- |
+| `npm run build`   | Builds `src/` into `dist/` (copies files, compiles Tailwind CSS, adds fonts and icons)                    |
+| `npm run watch`   | Rebuilds whenever a file in `src/` changes                                                                |
+| `npm run zip`     | Builds, then writes `safepaste-<version>.zip` for the Edge and Chrome stores (without the manifest `key`) |
+| `npm run release` | Builds, then writes `safepaste-<version>-unpacked.zip` for GitHub releases (with the `key`)               |
+| `npm run format`  | Formats the code with Prettier                                                                            |
 
-The `key` in `src/manifest.json` keeps the unpacked extension ID fixed (`cmchlgankkfhjljpahkjfmggibpankeh`), so your `OLLAMA_ORIGINS` setting keeps working after a reload. The Chrome Web Store version has a different ID; the setup page always shows the right one.
+The `key` in `src/manifest.json` keeps the extension ID fixed at `cmchlgankkfhjljpahkjfmggibpankeh` for everyone who installs from GitHub or from source, so the `OLLAMA_ORIGINS` command is the same for all of them:
+
+```
+chrome-extension://cmchlgankkfhjljpahkjfmggibpankeh
+```
+
+Store versions get their own ID from the store. The setup page always shows the right command for the copy you installed.
 
 ## How it works
 

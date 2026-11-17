@@ -53,8 +53,25 @@ async function zip() {
   }
 }
 
+async function release() {
+  const { version } = JSON.parse(await readFile(new URL('manifest.json', dist), 'utf8'));
+  const folder = `safepaste-${version}`;
+  const name = `${folder}-unpacked.zip`;
+  const stage = new URL('release/', root);
+  try {
+    await rm(stage, { recursive: true, force: true });
+    await cp(dist, new URL(`${folder}/`, stage), { recursive: true });
+    await rm(new URL(name, root), { force: true });
+    await run('zip', ['-r', '-X', '-q', `../${name}`, folder], { cwd: fileURLToPath(stage) });
+    console.log(`Wrote ${name}`);
+  } finally {
+    await rm(stage, { recursive: true, force: true });
+  }
+}
+
 await build();
 if (args.has('--zip')) await zip();
+if (args.has('--release')) await release();
 
 if (args.has('--watch')) {
   let timer = null;
